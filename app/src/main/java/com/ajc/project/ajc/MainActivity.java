@@ -21,15 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button test = (Button) findViewById(R.id.test);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Api api = new Api("event/get");
-                JSONArray events = api.getData();
-                refreshEvents(events);
-            }
-        });
+        Api api = new Api("event/get");
+        JSONArray events = api.getData();
+        refreshEvents(events);
     }
 
     private void refreshEvents(JSONArray events){
@@ -37,11 +31,18 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < events.length(); i++) {
             try {
                 JSONObject event = events.getJSONObject(i);
-//                TextView title = new TextView(this);
-//                title.setText(""+event.get("title"));
-//                title.setGravity(Gravity.CENTER);
-//                title.setTextColor(getResources().getColor(R.color.white));
-                mainView.addView(new EventUI(this, ""+event.get("title")));
+                String title="", date="", time="";
+                int id=-1;
+                try{
+                    id = (int) event.get("event_id");
+                    title = (String) event.get("title");
+                    String[] datetime = ((String) event.get("start")).split(" ");
+                    date = datetime[0] != null ? datetime[0] : "?";
+                    time = datetime[1] != null ? datetime[1] : "?";
+                    mainView.addView(new EventUI(this, id, title, date, time));
+                }catch(JSONException e){
+                    System.out.println("Cannot cast JSON");
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

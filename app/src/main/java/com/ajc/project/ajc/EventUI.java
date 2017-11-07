@@ -3,8 +3,13 @@ package com.ajc.project.ajc;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by pierre on 2017-11-07.
@@ -12,39 +17,43 @@ import android.widget.TextView;
 
 public class EventUI extends LinearLayout {
 
-    public EventUI(Context context, String title){
+    private int event_id;
+    private String title;
+    private String date;
+    private String time;
+
+    private Context context;
+
+    public EventUI(Context context, int event_id, String title, String date, String time){
         super(context);
+        this.context = context;
+        this.event_id = event_id;
+        this.title = title;
+        this.date = date;
+        this.time = time;
 
-        View.inflate(context, R.layout.event_layout, this);
-        TextView tv = (TextView) findViewById(R.id.titleText);
-        tv.setText(title);
+        this.create();
+    }
 
-//        TableLayout.LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-//        lp.setMargins(50, 50, 50, 0);
-//        this.setLayoutParams(lp);
-//
-//        GradientDrawable border = new GradientDrawable();
-//        border.setStroke(5, 0xFF000000); //black border with full opacity
-//        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-//            this.setBackgroundDrawable(border);
-//        } else {
-//            this.setBackground(border);
-//        }
-//
-//        TableRow titleRow = new TableRow(context);
-//        TextView titleView = new TextView(context);
-//        titleView.setText(title);
-//        titleView.setGravity(Gravity.CENTER);
-//        border.setStroke(3, 0xFFE3FF00); //black border with full opacity
-//
-//        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-//            titleRow.setBackgroundDrawable(border);
-//        } else {
-//            titleRow.setBackground(border);
-//        }
-//        titleView.setTextColor(getResources().getColor(R.color.white));
-//        titleRow.addView(titleView);
-//
-//        this.addView(titleRow);
+    private void create(){
+        View.inflate(this.context, R.layout.event_layout, this);
+        TextView tv = (TextView) findViewById(R.id.eventTitle);
+        tv.setText(this.title);
+        tv = (TextView) findViewById(R.id.eventDate);
+        tv.setText(this.date);
+        tv = (TextView) findViewById(R.id.eventHeure);
+        tv.setText(this.time);
+
+        Button buttonYes = (Button) findViewById(R.id.eventYes);
+        final EventUI it = this;
+        buttonYes.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Api api = new Api("participation/insert");
+                api.addData("event_id", it.event_id);
+                api.addData("user_id", 1);
+                api.addData("participe", 1);
+                System.out.println(api.call());
+            }
+        });
     }
 }

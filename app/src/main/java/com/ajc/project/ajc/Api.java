@@ -44,6 +44,10 @@ class Api {
         }
         return json;
     }
+
+    public JSONArray call(){
+        return this.getData();
+    }
 }
 
 class CallAPI extends AsyncTask<String, String, String> {
@@ -63,6 +67,7 @@ class CallAPI extends AsyncTask<String, String, String> {
             }
             this.data = URLEncoder.encode("endpoint", "UTF-8") + "=" + URLEncoder.encode(endpoint, "UTF-8");
             this.data += "&"+URLEncoder.encode("data", "UTF-8") + "=" + URLEncoder.encode(postData, "UTF-8");
+            System.out.println(this.data);
         }catch(Exception e){
             System.out.println("NO DATA");
         }
