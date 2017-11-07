@@ -1,22 +1,18 @@
 package com.ajc.project.ajc;
 
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,10 +26,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Api api = new Api("event/get");
-//                api.addData("creator", 1);
-                api.addData("start", "2017-12-25 19:00:00");
-                System.out.println(api.getData());
+                JSONArray events = api.getData();
+                refreshEvents(events);
             }
         });
+    }
+
+    private void refreshEvents(JSONArray events){
+        LinearLayout mainView = (LinearLayout) findViewById(R.id.mainView);
+        for (int i = 0; i < events.length(); i++) {
+            try {
+                JSONObject event = events.getJSONObject(i);
+//                TextView title = new TextView(this);
+//                title.setText(""+event.get("title"));
+//                title.setGravity(Gravity.CENTER);
+//                title.setTextColor(getResources().getColor(R.color.white));
+                mainView.addView(new EventUI(this, ""+event.get("title")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

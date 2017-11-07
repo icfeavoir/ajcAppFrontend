@@ -3,7 +3,6 @@ package com.ajc.project.ajc;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
-import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
