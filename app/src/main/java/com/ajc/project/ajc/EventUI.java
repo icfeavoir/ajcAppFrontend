@@ -23,10 +23,11 @@ public class EventUI extends LinearLayout {
     private String title;
     private String date;
     private String time;
+    private int participate;
 
     private Context context;
 
-    public EventUI(Context context, int event_id, String title, String date, String time){
+    public EventUI(Context context, int event_id, String title, String date, String time, int participate){
         super(context);
         this.context = context;
         this.event_id = event_id;
@@ -37,6 +38,10 @@ public class EventUI extends LinearLayout {
         this.create();
     }
 
+    public EventUI(Context context, int event_id, String title, String date, String time){
+        this(context, event_id, title, date, time, 0);
+    }
+
     private void create(){
         View.inflate(this.context, R.layout.event_layout, this);
         TextView tv = (TextView) findViewById(R.id.eventTitle);
@@ -45,6 +50,8 @@ public class EventUI extends LinearLayout {
         tv.setText(this.date);
         tv = (TextView) findViewById(R.id.eventHeure);
         tv.setText(this.time);
+
+        Button[] buttons = {(Button) findViewById(R.id.eventYes), (Button) findViewById(R.id.eventNo), (Button) findViewById(R.id.eventMaybe)};
 
         Button buttonYes = (Button) findViewById(R.id.eventYes);
         final EventUI it = this;
