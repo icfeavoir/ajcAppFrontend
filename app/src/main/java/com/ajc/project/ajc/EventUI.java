@@ -11,6 +11,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.R.attr.button;
+
 /**
  * Created by pierre on 2017-11-07.
  */
@@ -48,11 +50,58 @@ public class EventUI extends LinearLayout {
         final EventUI it = this;
         buttonYes.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
+                Button byes = (Button) findViewById(R.id.eventYes);
+                byes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                byes.setTextColor(getResources().getColor(R.color.white));
+                Button bno = (Button) findViewById(R.id.eventNo);
+                bno.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                bno.setTextColor(getResources().getColor(R.color.black));
+                Button bmaybe = (Button) findViewById(R.id.eventMaybe);
+                bmaybe.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                bmaybe.setTextColor(getResources().getColor(R.color.black));
                 Api api = new Api("participation/insert");
                 api.addData("event_id", it.event_id);
                 api.addData("user_id", 1);
-                api.addData("participe", 1);
-                System.out.println(api.call());
+                api.addData("participate", 1);
+                api.call();
+            }
+        });
+        final Button buttonMaybe = (Button) findViewById(R.id.eventMaybe);
+        buttonMaybe.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Button byes = (Button) findViewById(R.id.eventYes);
+                byes.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                byes.setTextColor(getResources().getColor(R.color.black));
+                Button bno = (Button) findViewById(R.id.eventNo);
+                bno.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                bno.setTextColor(getResources().getColor(R.color.black));
+                Button bmaybe = (Button) findViewById(R.id.eventMaybe);
+                bmaybe.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                bmaybe.setTextColor(getResources().getColor(R.color.white));
+                Api api = new Api("participation/insert");
+                api.addData("event_id", it.event_id);
+                api.addData("user_id", 1);
+                api.addData("participate", 2);
+                api.call();
+            }
+        });
+        final Button buttonNo = (Button) findViewById(R.id.eventNo);
+        buttonNo.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Button byes = (Button) findViewById(R.id.eventYes);
+                byes.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                byes.setTextColor(getResources().getColor(R.color.black));
+                Button bno = (Button) findViewById(R.id.eventNo);
+                bno.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                bno.setTextColor(getResources().getColor(R.color.white));
+                Button bmaybe = (Button) findViewById(R.id.eventMaybe);
+                bmaybe.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                bmaybe.setTextColor(getResources().getColor(R.color.black));
+                Api api = new Api("participation/insert");
+                api.addData("event_id", it.event_id);
+                api.addData("user_id", 1);
+                api.addData("participate", 3);
+                api.call();
             }
         });
     }

@@ -69,26 +69,35 @@
 
         <Button
             android:id="@+id/eventYes"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:layout_weight=".30"
+            android:background="@color/colorPrimaryDark"
             android:text="Oui" />
 
         <Button
             android:id="@+id/eventNo"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:layout_weight=".30"
+            android:background="@color/colorPrimaryDark"
             android:text="Non" />
 
         <Button
             android:id="@+id/eventMaybe"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:layout_weight=".30"
+            android:background="@color/colorPrimaryDark"
             android:text="Peut-être" />
     </LinearLayout>
 </GridLayout>

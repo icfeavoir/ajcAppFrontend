@@ -40,6 +40,7 @@ class Api {
             String resp = new CallAPI(API_URL, endpoint, data).execute().get();
             json = new JSONArray(resp);
         } catch (Exception e) {
+            System.out.println("No JSON");
             e.printStackTrace();
         }
         return json;

@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
                 String title="", date="", time="";
                 int id=-1;
                 try{
-                    id = (int) event.get("event_id");
-                    title = (String) event.get("title");
-                    String[] datetime = ((String) event.get("start")).split(" ");
-                    date = datetime[0] != null ? datetime[0] : "?";
-                    time = datetime[1] != null ? datetime[1] : "?";
+                    id = !event.isNull("event_id") ? (int) event.get("event_id") : -1;
+                    title = !event.isNull("title") ? (String) event.get("title") : "No title";
+                    String datetimeString = !event.isNull("start") ? (String)event.get("start") : "? ?";
+                    String[] datetime = datetimeString.split(" ");
+                    date = datetime[0];
+                    time = datetime[1];
                     mainView.addView(new EventUI(this, id, title, date, time));
                 }catch(JSONException e){
                     System.out.println("Cannot cast JSON");
