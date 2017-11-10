@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "965276580488",
+    "firebase_url": "https://ajcbackend.firebaseio.com",
+    "project_id": "ajcbackend",
+    "storage_bucket": "ajcbackend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965276580488:android:47bba6d91f077ae4",
+        "android_client_info": {
+          "package_name": "com.ajc.project.ajc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965276580488-vdpj49gjfrnl90dsfdrqgr3ck9i4cn6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA5wt1NLDO7p_4P2WistO-ttYF5NzA0ws"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
