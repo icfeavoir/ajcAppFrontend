@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static android.R.attr.button;
+import static java.nio.file.Paths.get;
 
 /**
  * Created by pierre on 2017-11-07.
@@ -28,7 +29,7 @@ public class EventUI extends LinearLayout {
 
     private Context context;
 
-    public EventUI(Context context, int event_id, String title, String date, String time, int participate){
+    public EventUI(Context context, int event_id, String title, String date, String time) {
         super(context);
         this.context = context;
         this.event_id = event_id;
@@ -36,11 +37,16 @@ public class EventUI extends LinearLayout {
         this.date = date;
         this.time = time;
 
+        Api participate = new Api("participation/get");
+        participate.addData("event_id", this.event_id);
+        participate.addData("user_id", 1);
+        try {
+            JSONObject resp = participate.getData().getJSONObject(0);
+            this.participate = !resp.isNull("participate") ? (int) resp.get("participate") : 0;
+        }catch(JSONException e){
+            this.participate = 0;
+        }
         this.create();
-    }
-
-    public EventUI(Context context, int event_id, String title, String date, String time){
-        this(context, event_id, title, date, time, 0);
     }
 
     private void create(){
@@ -53,26 +59,26 @@ public class EventUI extends LinearLayout {
         tv.setText(this.time);
 
         final EventUI it = this;
-        final Button[] buttons = {null, (Button) findViewById(R.id.eventYes), (Button) findViewById(R.id.eventNo), (Button) findViewById(R.id.eventMaybe)};
+        final TextView[] buttons = {null, (TextView) findViewById(R.id.eventYes), (TextView) findViewById(R.id.eventNo), (TextView) findViewById(R.id.eventMaybe)};
+
         for(int i=0; i<buttons.length; i++){
-            Button b = buttons[i];
+            TextView b = buttons[i];
+            //default value (color)
+            if(this.participate != 0 && this.participate == i) {
+                b.setTextColor(getResources().getColor(R.color.colorPrimary));
+            }
             if(b != null){
                 final int count = i;
                 b.setOnClickListener(new OnClickListener() {
                     public void onClick(View v) {
-                        int[] textColors = {0, getResources().getColor(R.color.black), getResources().getColor(R.color.black), getResources().getColor(R.color.black)};
-                        int[] backgroundColors = {0, getResources().getColor(R.color.colorPrimaryDark), getResources().getColor(R.color.colorPrimaryDark), getResources().getColor(R.color.colorPrimaryDark)};
-                        textColors[count] = getResources().getColor(R.color.white);
-                        backgroundColors[count] = getResources().getColor(R.color.colorPrimary);
+                        int[] textColors = {0, getResources().getColor(R.color.colorPrimaryDark), getResources().getColor(R.color.colorPrimaryDark), getResources().getColor(R.color.colorPrimaryDark)};
+                        textColors[count] = getResources().getColor(R.color.colorPrimary);
 
-                        Button byes = (Button) findViewById(R.id.eventYes);
-                        byes.setBackgroundColor(backgroundColors[1]);
+                        TextView byes = (TextView) findViewById(R.id.eventYes);
                         byes.setTextColor(textColors[1]);
-                        Button bno = (Button) findViewById(R.id.eventNo);
-                        bno.setBackgroundColor(backgroundColors[2]);
+                        TextView bno = (TextView) findViewById(R.id.eventNo);
                         bno.setTextColor(textColors[2]);
-                        Button bmaybe = (Button) findViewById(R.id.eventMaybe);
-                        bmaybe.setBackgroundColor(backgroundColors[3]);
+                        TextView bmaybe = (TextView) findViewById(R.id.eventMaybe);
                         bmaybe.setTextColor(textColors[3]);
                         Api api = new Api("participation/insert");
                         api.addData("event_id", it.event_id);
@@ -83,46 +89,5 @@ public class EventUI extends LinearLayout {
                 });
             }
         }
-//        Button buttonYes = (Button) findViewById(R.id.eventYes);
-//
-//        buttonYes.
-//        final Button buttonMaybe = (Button) findViewById(R.id.eventMaybe);
-//        buttonMaybe.setOnClickListener(new OnClickListener() {
-//            public void onClick(View v) {
-//                Button byes = (Button) findViewById(R.id.eventYes);
-//                byes.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-//                byes.setTextColor(getResources().getColor(R.color.black));
-//                Button bno = (Button) findViewById(R.id.eventNo);
-//                bno.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-//                bno.setTextColor(getResources().getColor(R.color.black));
-//                Button bmaybe = (Button) findViewById(R.id.eventMaybe);
-//                bmaybe.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//                bmaybe.setTextColor(getResources().getColor(R.color.white));
-//                Api api = new Api("participation/insert");
-//                api.addData("event_id", it.event_id);
-//                api.addData("user_id", 1);
-//                api.addData("participate", 2);
-//                api.call();
-//            }
-//        });
-//        final Button buttonNo = (Button) findViewById(R.id.eventNo);
-//        buttonNo.setOnClickListener(new OnClickListener() {
-//            public void onClick(View v) {
-//                Button byes = (Button) findViewById(R.id.eventYes);
-//                byes.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-//                byes.setTextColor(getResources().getColor(R.color.black));
-//                Button bno = (Button) findViewById(R.id.eventNo);
-//                bno.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//                bno.setTextColor(getResources().getColor(R.color.white));
-//                Button bmaybe = (Button) findViewById(R.id.eventMaybe);
-//                bmaybe.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-//                bmaybe.setTextColor(getResources().getColor(R.color.black));
-//                Api api = new Api("participation/insert");
-//                api.addData("event_id", it.event_id);
-//                api.addData("user_id", 1);
-//                api.addData("participate", 3);
-//                api.call();
-//            }
-//        });
     }
 }

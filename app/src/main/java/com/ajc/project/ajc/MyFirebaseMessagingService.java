@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -39,7 +40,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
             PendingIntent intent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
             mBuilder.setContentIntent(intent);
 
-            mNotificationManager.notify(0, mBuilder.build());
+            Notification notif = mBuilder.build();
+            notif.flags |= Notification.FLAG_AUTO_CANCEL;
+
+            mNotificationManager.notify(0, notif);
+
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            long[] pattern = { 0, 100, 500, 100, 500, 100};
+            vibrator.vibrate(pattern , -1);
         }catch(Exception e){
             System.err.println("Notification problem");
         }

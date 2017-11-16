@@ -2,9 +2,9 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
+    android:layout_marginBottom="15dp"
     android:layout_marginTop="5dp"
     android:background="@color/white"
     android:columnCount="5"
@@ -65,20 +65,23 @@
         android:layout_columnSpan="5"
         android:layout_gravity="fill_horizontal"
         android:layout_rowSpan="1"
+        android:layout_marginBottom="15dp"
         >
 
-        <Button
+        <TextView
             android:id="@+id/eventYes"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_weight=".30"
-            android:background="@color/colorPrimaryDark"
-            android:text="Oui" />
+            android:text="Oui"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimaryDark"/>
 
-        <Button
+        <TextView
             android:id="@+id/eventNo"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
@@ -86,10 +89,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:layout_weight=".30"
-            android:background="@color/colorPrimaryDark"
-            android:text="Non" />
+            android:text="Non"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimaryDark" />
 
-        <Button
+        <TextView
             android:id="@+id/eventMaybe"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
@@ -97,7 +102,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:layout_weight=".30"
-            android:background="@color/colorPrimaryDark"
-            android:text="Peut-être" />
+            android:text="Peut-être"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimaryDark"/>
     </LinearLayout>
 </GridLayout>
