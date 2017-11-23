@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_gravity="fill"
     android:layout_height="wrap_content"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:layout_marginBottom="15dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginBottom="20dp"
     android:background="@color/white"
     android:columnCount="5"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:rowCount="4">
 
     <TextView
         android:id="@+id/eventDate"
         android:layout_columnSpan="1"
-        android:layout_rowSpan="2"
         android:layout_gravity="fill"
-        android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_rowSpan="2"
         android:gravity="fill_vertical"
         android:text="2017-12-07"
         android:textColor="@color/black"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="2dp"
         android:layout_columnSpan="1"
-        android:layout_rowSpan="2"
         android:layout_gravity="fill_vertical"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_rowSpan="2"
         android:background="#00005b"
-        android:text=""/>
+        android:text="" />
 
-    <TextView
-        android:id="@+id/eventTitle"
+    <RelativeLayout
+        android:layout_width="0dp"
         android:layout_columnSpan="3"
         android:layout_gravity="fill"
-        android:layout_rowSpan="1"
-        android:gravity="start"
-        android:textColor="@color/darkerBlue"
-        android:text="Title"
-        android:textSize="30sp" />
+        android:layout_rowSpan="1">
+
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Title"
+            android:textColor="@color/darkerBlue"
+            android:textSize="30sp" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/eventHeure"
         android:layout_columnSpan="3"
         android:layout_gravity="fill"
         android:layout_rowSpan="1"
-        android:textColor="@color/black"
-        android:text="Heure" />
+        android:text="Heure"
+        android:textColor="@color/black" />
 
     <TextView
         android:layout_height="2dp"
         android:layout_columnSpan="5"
-        android:layout_rowSpan="1"
         android:layout_gravity="fill_horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_rowSpan="1"
         android:background="#00005b"
-        android:text=""/>
+        android:text="" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_columnSpan="5"
         android:layout_gravity="fill_horizontal"
-        android:layout_rowSpan="1"
         android:layout_marginBottom="15dp"
-        >
+        android:layout_rowSpan="1"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/eventYes"
@@ -78,33 +83,33 @@
             android:layout_weight=".30"
             android:text="Oui"
             android:textAlignment="center"
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/eventNo"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_weight=".30"
             android:text="Non"
             android:textAlignment="center"
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/eventMaybe"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_weight=".30"
             android:text="Peut-être"
             android:textAlignment="center"
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp" />
     </LinearLayout>
 </GridLayout>

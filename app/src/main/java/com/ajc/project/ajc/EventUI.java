@@ -61,10 +61,10 @@ public class EventUI extends LinearLayout {
         final EventUI it = this;
         final TextView[] buttons = {null, (TextView) findViewById(R.id.eventYes), (TextView) findViewById(R.id.eventNo), (TextView) findViewById(R.id.eventMaybe)};
 
-        for(int i=0; i<buttons.length; i++){
+        for(int i=1; i<buttons.length; i++){
             TextView b = buttons[i];
             //default value (color)
-            if(this.participate != 0 && this.participate == i) {
+            if(this.participate == i) {
                 b.setTextColor(getResources().getColor(R.color.colorPrimary));
             }
             if(b != null){

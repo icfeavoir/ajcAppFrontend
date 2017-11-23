@@ -6,8 +6,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -35,10 +37,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
             mBuilder.setContentText(body);
 
             // onclick
-            Intent notificationIntent = new Intent(this, MainActivity.class);
-            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            PendingIntent intent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-            mBuilder.setContentIntent(intent);
+            Bundle b = new Bundle();
+            b.putInt("event_id", 1);
+            Intent eventIntent = new Intent(this, EventUnique.class);
+            eventIntent.putExtras(b);
+            PendingIntent pendingIntent = TaskStackBuilder.create(this)
+                            .addNextIntentWithParentStack(eventIntent)
+                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(pendingIntent);
 
             Notification notif = mBuilder.build();
             notif.flags |= Notification.FLAG_AUTO_CANCEL;
