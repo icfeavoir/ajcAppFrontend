@@ -1,6 +1,7 @@
 package com.ajc.project.ajc;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static android.R.attr.button;
+import static android.content.Context.MODE_PRIVATE;
 import static java.nio.file.Paths.get;
 
 /**
@@ -20,6 +22,8 @@ import static java.nio.file.Paths.get;
  */
 
 public class EventUI extends LinearLayout {
+
+    private int MY_ID;
 
     private int event_id;
     private String title;
@@ -37,9 +41,13 @@ public class EventUI extends LinearLayout {
         this.date = date;
         this.time = time;
 
+        SharedPreferences prefs = context.getSharedPreferences("AJC_VAR", MODE_PRIVATE);
+        this.MY_ID = prefs.getInt("MY_ID", 0);
+
+        this.MY_ID = 1;
         Api participate = new Api("participation/get");
         participate.addData("event_id", this.event_id);
-        participate.addData("user_id", 1);
+        participate.addData("user_id", this.MY_ID);
         try {
             JSONObject resp = participate.getData().getJSONObject(0);
             this.participate = !resp.isNull("participate") ? (int) resp.get("participate") : 0;
@@ -51,15 +59,15 @@ public class EventUI extends LinearLayout {
 
     private void create(){
         View.inflate(this.context, R.layout.event_layout, this);
-        TextView tv = (TextView) findViewById(R.id.eventTitle);
+        TextView tv = findViewById(R.id.eventTitle);
         tv.setText(this.title);
-        tv = (TextView) findViewById(R.id.eventDate);
+        tv = findViewById(R.id.eventDate);
         tv.setText(this.date);
-        tv = (TextView) findViewById(R.id.eventHeure);
+        tv = findViewById(R.id.eventHeure);
         tv.setText(this.time);
 
         final EventUI it = this;
-        final TextView[] buttons = {null, (TextView) findViewById(R.id.eventYes), (TextView) findViewById(R.id.eventNo), (TextView) findViewById(R.id.eventMaybe)};
+        final TextView[] buttons = {null, findViewById(R.id.eventYes), findViewById(R.id.eventNo), findViewById(R.id.eventMaybe)};
 
         for(int i=1; i<buttons.length; i++){
             TextView b = buttons[i];
@@ -74,15 +82,15 @@ public class EventUI extends LinearLayout {
                         int[] textColors = {0, getResources().getColor(R.color.colorPrimaryDark), getResources().getColor(R.color.colorPrimaryDark), getResources().getColor(R.color.colorPrimaryDark)};
                         textColors[count] = getResources().getColor(R.color.colorPrimary);
 
-                        TextView byes = (TextView) findViewById(R.id.eventYes);
+                        TextView byes = findViewById(R.id.eventYes);
                         byes.setTextColor(textColors[1]);
-                        TextView bno = (TextView) findViewById(R.id.eventNo);
+                        TextView bno = findViewById(R.id.eventNo);
                         bno.setTextColor(textColors[2]);
-                        TextView bmaybe = (TextView) findViewById(R.id.eventMaybe);
+                        TextView bmaybe = findViewById(R.id.eventMaybe);
                         bmaybe.setTextColor(textColors[3]);
                         Api api = new Api("participation/insert");
                         api.addData("event_id", it.event_id);
-                        api.addData("user_id", 1);
+                        api.addData("user_id", it.MY_ID);
                         api.addData("participate", count);
                         api.call();
                     }

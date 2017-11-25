@@ -1,5 +1,6 @@
 package com.ajc.project.ajc;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -12,6 +13,8 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by pierre on 2017-11-03.

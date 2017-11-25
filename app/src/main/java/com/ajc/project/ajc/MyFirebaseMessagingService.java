@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
@@ -23,8 +24,14 @@ import static android.R.id.message;
  */
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService{
+
+    private int MY_ID;
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage){
+        SharedPreferences prefs = this.getSharedPreferences("AJC_VAR", MODE_PRIVATE);
+        this.MY_ID = prefs.getInt("MY_ID", 0);
+
         try {
             String title = remoteMessage.getData().get("title");
             String body = remoteMessage.getData().get("body");
@@ -38,7 +45,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
 
             // onclick
             Bundle b = new Bundle();
-            b.putInt("event_id", 1);
+            b.putInt("event_id", 16);
             Intent eventIntent = new Intent(this, EventUnique.class);
             eventIntent.putExtras(b);
             PendingIntent pendingIntent = TaskStackBuilder.create(this)
@@ -52,7 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
             mNotificationManager.notify(0, notif);
 
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            long[] pattern = { 0, 100, 500, 100, 500, 100};
+            long[] pattern = {0, 100, 500, 100};
             vibrator.vibrate(pattern , -1);
         }catch(Exception e){
             System.err.println("Notification problem");

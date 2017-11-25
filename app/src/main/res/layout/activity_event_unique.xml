@@ -1,141 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.SwipeRefreshLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_event_unique_refresh"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:layout_marginBottom="15dp"
-    android:layout_marginTop="5dp"
-    android:background="@color/white"
-    android:columnCount="3"
-    android:rowCount="5"
     >
-
-    <TextView
-        android:id="@+id/eventUniqueTitle"
-        android:layout_columnSpan="3"
-        android:layout_rowSpan="1"
-        android:layout_gravity="fill"
-        android:text="My Title"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textAlignment="center"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_columnSpan="3"
-        android:layout_gravity="fill_horizontal"
-        android:layout_rowSpan="1"
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/lightGray"
         >
-        <TextView
-            android:id="@+id/eventUniqueDate"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_weight=".50"
-            android:text="2017-07-12"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary"/>
+            android:orientation="horizontal">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="5dp"
+                android:background="@color/white"
+                android:columnCount="3"
+                android:rowCount="5"
+                >
 
-        <TextView
-            android:id="@+id/eventUniqueHour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_weight=".50"
-            android:text="19:30"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary" />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/eventUniqueDescription"
-        android:layout_marginTop="10dp"
-        android:layout_columnSpan="3"
-        android:layout_rowSpan="1"
-        android:layout_gravity="fill"
-        android:text="Ceci est une première Ceci est une première description Ceci est une première description Ceci est une première description est une première description Ceci description Ceci est une première description "
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        />
+                <TextView
+                    android:id="@+id/eventUniqueTitle"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="1"
+                    android:layout_gravity="fill"
+                    android:text="My Title"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textAlignment="center"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_columnSpan="3"
-        android:layout_gravity="fill_horizontal"
-        android:layout_rowSpan="1"
-        android:layout_marginBottom="15dp"
-        >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_columnSpan="3"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_rowSpan="1"
+                    >
+                    <TextView
+                        android:id="@+id/eventUniqueDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".50"
+                        android:text="2017-07-12"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimary"/>
 
-        <TextView
-            android:id="@+id/eventUniqueYes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight=".30"
-            android:text="Oui"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark"/>
+                    <TextView
+                        android:id="@+id/eventUniqueHour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".50"
+                        android:text="19:30"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimary" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/eventUniqueDescription"
+                    android:layout_marginTop="10dp"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="1"
+                    android:layout_gravity="fill"
+                    android:text="Description"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    />
 
-        <TextView
-            android:id="@+id/eventUniqueNo"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_weight=".30"
-            android:text="Non"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_columnSpan="3"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_rowSpan="1"
+                    android:layout_marginBottom="15dp"
+                    >
 
-        <TextView
-            android:id="@+id/eventUniqueMaybe"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_weight=".30"
-            android:text="Peut-être"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark"/>
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_rowSpan="1"
-        android:layout_columnSpan="3"
-        android:layout_gravity="fill_horizontal"
-        >
-        <TextView
-            android:id="@+id/eventUniqueCreator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_weight=".50"
-            android:text="created by Pierre"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:id="@+id/eventUniqueYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight=".30"
+                        android:text="Oui"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:textColor="@color/colorPrimaryDark"/>
 
-        <TextView
-            android:id="@+id/eventUniquePrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_weight=".50"
-            android:text="5€"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary" />
-    </LinearLayout>
-</GridLayout>
+                    <TextView
+                        android:id="@+id/eventUniqueNo"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".30"
+                        android:text="Non"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:id="@+id/eventUniqueMaybe"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".30"
+                        android:text="Peut-être"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:textColor="@color/colorPrimaryDark"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_rowSpan="1"
+                    android:layout_columnSpan="3"
+                    android:layout_gravity="fill_horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/eventUniqueCreator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".50"
+                        android:text="created by Pierre"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/eventUniquePrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".50"
+                        android:text="5€"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimary" />
+                </LinearLayout>
+            </GridLayout>
+            <GridLayout
+                android:id="@+id/eventUniqueParticipateGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:columnCount="2"
+                android:rowCount="1"
+                >
+                <LinearLayout
+                    android:id="@+id/eventUniqueParticipateList"
+                    android:orientation="horizontal"
+                    android:layout_rowSpan="1"
+                    android:layout_columnSpan="2"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="fill_horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/eventUniqueParticipateName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".25"
+                        android:text="Pierre Leroy"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/eventUniqueParticipateAnswer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill"
+                        android:layout_weight=".75"
+                        android:text="Oui"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/success" />
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
